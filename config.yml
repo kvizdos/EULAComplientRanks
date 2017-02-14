@@ -1,0 +1,69 @@
+Ads:
+  Join:
+    - "&6Use Coupon Code &aWITCH &6at checkout for %25 off!"
+    - "&6Use Coupon Code &aCREEPER &6at checkout for %25 off!"
+    - "&6Use Coupon Code &aZOMBIE &6at checkout for %25 off!"
+  Command:
+    Commands:
+      - "plugins"
+    Ads:
+      - "&6Ready to play? SKIP THE WAITS!!! Buy VIP using '/buy'"
+      - "&6Skip the waits! Buy &ePremium &6using '/buy'!"
+GUI:
+  AttributeGUI:
+    Name: "&bAttribuCenter"
+    Slot: 0
+    Item: 369
+  ColorGUI:
+    Name: "&bColor Chooser"
+    Tab:
+      Name: "&6Change Tab Name"
+      Lore: "B Fancee in the Tab List!"
+    Chat:
+      Name: "&6Change Chat Colors"
+      Lore: "B Fancee in the Chat!"   
+  Addons:
+    SuperJump:
+      Name: "&3Super &bJump"
+      Lore: "&9You'll be high in no time."
+    ColorChangingArmor:
+      Name: "&9COLOR &3Changing &bArmor"
+      Lore: "&dTHE COLORS!!!"
+    HidePlayers:
+      Name: "&8Hide Players"
+      Lore: "&4Its a lonely world.."
+    Flight:
+      Name: "&bWings"
+      Lore: "&8IM SO HIGH!"
+    FireworkLauncher:
+      Name: "&4Fireworks"
+      Lore: "&8*explosion*"
+    Paintball:
+      Name: "Paintball"
+      Lore: "&4OUCH!"
+    ColorPicker:
+      Name: "&3Color&4Picker"
+      Lore: "B Fancee"
+
+Effects:
+  SuperJumpEffect: 3
+  
+JoinAdTitle: true
+CmdAdTitle: true
+
+GiveItemSlot: 1
+WorldWideMoney: 100
+
+URL:
+  Donate: "www.kentonvizdos.com"
+
+NoPermissions:
+  AddonsPicker: "&4You do not have permissions to choose addons"
+  SuperJump: "&4You do not have permissions to use Super Jump"
+  ColorChangingArmor: "&4You do not have permissions to use Color Changing Armor"
+  HidePlayers: "&4You do not have permissions to hide players"
+  Flight: "&4You do not have permissions to fly"
+  FireworkLauncher: "&4You do not have permissions to launch Fireworks"
+  Paintball: "&4You do not have permissions to play Paintball"
+  ColorPicker: "&4You do not have permissions to change your colors"
+  Tab: "&4You do not have permissions to change your tab color"
