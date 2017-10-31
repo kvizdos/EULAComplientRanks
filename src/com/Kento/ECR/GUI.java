@@ -39,208 +39,217 @@ public class GUI implements Listener {
 	static FileConfiguration config = Main.plugin.getConfig();
 
 	static ItemStack createItem(ItemStack item, String name, String lore) {
-		List<String> cil = new ArrayList<String>();
-		cil.add(lore);
-		ItemStack is = item;
-		ItemMeta im = item.getItemMeta();
-		im.setDisplayName(name);
-		im.setLore(cil);
-		is.setItemMeta(im);
-		return is;
+		ItemStack itemStack = item;
+		ItemMeta itemMeta = item.getItemMeta();
+		itemMeta.setDisplayName(name);
+		
+		List<String> lores = new ArrayList<String>();
+		lores.add(lore);
+		itemMeta.setLore(lores);
+		
+		itemStack.setItemMeta(itemMeta);
+		return itrmStack;
 	}	
 	
-	static ItemStack sj = new ItemStack(Material.DIAMOND_BOOTS);
-	static ItemStack cca = new ItemStack(Material.LEATHER_CHESTPLATE);
-	static ItemStack hp = new ItemStack(Material.DEAD_BUSH);
-	static ItemStack fl = new ItemStack(Material.GLOWSTONE_DUST);
-	static ItemStack fw = new ItemStack(Material.FIREWORK);
-	static ItemStack pb = new ItemStack(Material.ARROW);
-	static ItemStack co = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getDyeData());
-	static ItemStack tcollist = new ItemStack(Material.WOOL, 1, DyeColor.GRAY.getWoolData());
-	static ItemStack ccollist = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getWoolData());
+	/*
+	* Items
+	*/
+	ItemStack superJumpItem = new ItemStack(Material.DIAMOND_BOOTS);
+	ItemStack colorChangingItem = new ItemStack(Material.LEATHER_CHESTPLATE);
+	ItemStack hidePlayersItem = new ItemStack(Material.DEAD_BUSH);
+	ItemStack flightItem = new ItemStack(Material.GLOWSTONE_DUST);
+	ItemStack fireworkLauncherItem = new ItemStack(Material.FIREWORK);
+	ItemStack paintballItem = new ItemStack(Material.ARROW);
+	ItemStack colorPickerItem = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getDyeData());
+	ItemStack tabColor = new ItemStack(Material.WOOL, 1, DyeColor.GRAY.getWoolData());
+	ItemStack chatColor = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getWoolData());
 
+	/*
+	* GUIs (Inventories)
+	*/
 	public static Inventory cmdGUI = Bukkit.createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.AttributeGUI.Name")));
-	
 	public static Inventory tcolGUI = Bukkit.createInventory(null, 18, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Name")));
-
 	public static Inventory colGUI = Bukkit.createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Name")));
 
-	static ItemStack cblack = new ItemStack(Material.WOOL, 1, DyeColor.BLACK.getWoolData());
-	static ItemStack cred = new ItemStack(Material.WOOL, 1, DyeColor.RED.getWoolData());
-	static ItemStack cgray = new ItemStack(Material.WOOL, 1, DyeColor.GRAY.getWoolData());
-	static ItemStack cblue = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getWoolData());
-	static ItemStack cmagenta = new ItemStack(Material.WOOL, 1, DyeColor.MAGENTA.getWoolData());
-	static ItemStack clblue = new ItemStack(Material.WOOL, 1, DyeColor.LIGHT_BLUE.getWoolData());
-	static ItemStack cpink = new ItemStack(Material.WOOL, 1, DyeColor.PINK.getWoolData());
-	static ItemStack cgreen = new ItemStack(Material.WOOL, 1, DyeColor.GREEN.getWoolData());
-	static ItemStack corange = new ItemStack(Material.WOOL, 1, DyeColor.ORANGE.getWoolData());
-	static ItemStack clime = new ItemStack(Material.WOOL, 1, DyeColor.LIME.getWoolData());
-	static ItemStack cyellow = new ItemStack(Material.WOOL, 1, DyeColor.YELLOW.getWoolData());
-	static ItemStack cwhite = new ItemStack(Material.WOOL, 1, DyeColor.WHITE.getWoolData());
+	/*
+	* Colors
+	*/
+	ItemStack colorBlack = new ItemStack(Material.WOOL, 1, DyeColor.BLACK.getWoolData());
+	ItemStack colorRed = new ItemStack(Material.WOOL, 1, DyeColor.RED.getWoolData());
+	ItemStack colorGray = new ItemStack(Material.WOOL, 1, DyeColor.GRAY.getWoolData());
+	ItemStack colorBlue = new ItemStack(Material.WOOL, 1, DyeColor.BLUE.getWoolData());
+	ItemStack colorMagenta = new ItemStack(Material.WOOL, 1, DyeColor.MAGENTA.getWoolData());
+	ItemStack colorAqua = new ItemStack(Material.WOOL, 1, DyeColor.LIGHT_BLUE.getWoolData());
+	ItemStack colorPink = new ItemStack(Material.WOOL, 1, DyeColor.PINK.getWoolData());
+	ItemStack colorGreen = new ItemStack(Material.WOOL, 1, DyeColor.GREEN.getWoolData());
+	ItemStack colorOrange = new ItemStack(Material.WOOL, 1, DyeColor.ORANGE.getWoolData());
+	ItemStack colorLime = new ItemStack(Material.WOOL, 1, DyeColor.LIME.getWoolData());
+	ItemStack colorYellow = new ItemStack(Material.WOOL, 1, DyeColor.YELLOW.getWoolData());
+	ItemStack colorWhite = new ItemStack(Material.WOOL, 1, DyeColor.WHITE.getWoolData());
 
 	static {
-		cmdGUI.setItem(0, createItem(sj, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.SuperJump.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.SuperJump.Lore"))));
-		cmdGUI.setItem(1, createItem(cca, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorChangingArmor.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorChangingArmor.Lore"))));
-		cmdGUI.setItem(2, createItem(hp, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.HidePlayers.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.HidePlayers.Lore"))));
-		cmdGUI.setItem(3, createItem(fl, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Flight.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Flight.Lore"))));
-		cmdGUI.setItem(4, createItem(fw, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.FireworkLauncher.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.FireworkLauncher.Lore"))));
-		cmdGUI.setItem(5, createItem(pb, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Paintball.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Paintball.Lore"))));
-		cmdGUI.setItem(6, createItem(co, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorPicker.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorPicker.Lore"))));
+		cmdGUI.setItem(0, createItem(superJumpItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.SuperJump.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.SuperJump.Lore"))));
+		cmdGUI.setItem(1, createItem(colorChangingItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorChangingArmor.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorChangingArmor.Lore"))));
+		cmdGUI.setItem(2, createItem(hidePlayersItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.HidePlayers.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.HidePlayers.Lore"))));
+		cmdGUI.setItem(3, createItem(flightItems, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Flight.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Flight.Lore"))));
+		cmdGUI.setItem(4, createItem(fireworkLauncherItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.FireworkLauncher.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.FireworkLauncher.Lore"))));
+		cmdGUI.setItem(5, createItem(paintballItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Paintball.Name")),  ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.Paintball.Lore"))));
+		cmdGUI.setItem(6, createItem(colorPickerItem, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorPicker.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.Addons.ColorPicker.Lore"))));
 		
-		colGUI.setItem(0, createItem(tcollist, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Lore"))));
-		colGUI.setItem(8, createItem(ccollist, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Chat.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Lore"))));
+		colGUI.setItem(0, createItem(tabColor, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Lore"))));
+		colGUI.setItem(8, createItem(chatColor, ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Chat.Name")), ChatColor.translateAlternateColorCodes('&', config.getString("GUI.ColorGUI.Tab.Lore"))));
 
 		// LIST NAMING WOOL
-		tcolGUI.setItem(0, createItem(cblack, ChatColor.BLACK + "Black", ""));
-		tcolGUI.setItem(1, createItem(cred, ChatColor.RED + "Red", ""));
-		tcolGUI.setItem(1, createItem(cgray, ChatColor.GRAY + "Gray", ""));
-		tcolGUI.setItem(2, createItem(cblue, ChatColor.BLUE + "Blue", ""));
-		tcolGUI.setItem(3, createItem(cmagenta, ChatColor.DARK_PURPLE + "Magenta", ""));
-		tcolGUI.setItem(4, createItem(clblue, ChatColor.AQUA + "Aqua", ""));
-		tcolGUI.setItem(5, createItem(cpink, ChatColor.LIGHT_PURPLE + "Pink", ""));
-		tcolGUI.setItem(6, createItem(cgreen, ChatColor.DARK_GREEN + "Green", ""));
-		tcolGUI.setItem(7, createItem(corange, ChatColor.GOLD + "Gold", ""));
-		tcolGUI.setItem(8, createItem(clime, ChatColor.GREEN + "Lime", ""));
-		tcolGUI.setItem(9, createItem(cyellow, ChatColor.YELLOW + "Yellow", ""));
-		tcolGUI.setItem(10, createItem(cwhite, ChatColor.WHITE + "White", ""));
+		tcolGUI.setItem(0, createItem(colorBlack, ChatColor.BLACK + "Black", ""));
+		tcolGUI.setItem(1, createItem(colorRed, ChatColor.RED + "Red", ""));
+		tcolGUI.setItem(1, createItem(colorGray, ChatColor.GRAY + "Gray", ""));
+		tcolGUI.setItem(2, createItem(colorBlue, ChatColor.BLUE + "Blue", ""));
+		tcolGUI.setItem(3, createItem(colorMagenta, ChatColor.DARK_PURPLE + "Magenta", ""));
+		tcolGUI.setItem(4, createItem(colorAqua, ChatColor.AQUA + "Aqua", ""));
+		tcolGUI.setItem(5, createItem(colorPink, ChatColor.LIGHT_PURPLE + "Pink", ""));
+		tcolGUI.setItem(6, createItem(colorGreen, ChatColor.DARK_GREEN + "Green", ""));
+		tcolGUI.setItem(7, createItem(colorGold, ChatColor.GOLD + "Gold", ""));
+		tcolGUI.setItem(8, createItem(colorLime, ChatColor.GREEN + "Lime", ""));
+		tcolGUI.setItem(9, createItem(colorYellow, ChatColor.YELLOW + "Yellow", ""));
+		tcolGUI.setItem(10, createItem(colorWhite, ChatColor.WHITE + "White", ""));
 	}
 	
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent e) {
-		Player p = e.getPlayer();
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
 		
 		@SuppressWarnings("deprecation")
 		ItemStack AC = new ItemStack(Material.getMaterial(config.getInt("GUI.AttributeGUI.Item")));
 		ItemMeta ACM = AC.getItemMeta();
 		ACM.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("GUI.AttributeGUI.Name")));
 		AC.setItemMeta(ACM);
-		p.getInventory().setItem(config.getInt("GUI.AttributeGUI.Slot"), AC);
+		player.getInventory().setItem(config.getInt("GUI.AttributeGUI.Slot"), AC);
 	}
 	
 
 	@EventHandler
-	public void onInvClick(InventoryClickEvent e) {
-		Player p = (Player) e.getWhoClicked();
-		ItemStack clicked = e.getCurrentItem();
-		Inventory inv = e.getInventory();
-		if(inv == null) {
+	public void onInvClick(InventoryClickEvent event) {
+		Player player = (Player) e.getWhoClicked();
+		ItemStack clicked = event.getCurrentItem();
+		Inventory inventor = event.getInventory();
+		if(inventory == null) {
 			e.setCancelled(true);
 		}
-		else if(inv.getName().equals(cmdGUI.getName())) {
+		else if(inventory.getName().equals(cmdGUI.getName())) {
 			// SUPER JUMP
-			if(e.getCurrentItem().getType() == Material.DIAMOND_BOOTS && inv != null) {
-				if(p.hasPermission("ecr.addons.superjump")) {
-					e.setCancelled(true);
-					SuperJump.superJump(p);
+			if(event.getCurrentItem().getType() == Material.DIAMOND_BOOTS && inventory != null) {
+				if(player.hasPermission("ecr.addons.superjump")) {
+					event.setCancelled(true);
+					SuperJump.superJump(player);
 				} else {
-					e.setCancelled(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.SuperJump")));
+					event.setCancelled(true);
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.SuperJump")));
 				}
 			}
 			// COLOR CHANGING ARMOR
 			if(clicked.getType() == Material.LEATHER_CHESTPLATE) {
-				if(p.hasPermission("ecr.addons.changingarmor")) {
-					e.setCancelled(true);
-					ColorChangingArmor.changeArmor(p);
+				if(player.hasPermission("ecr.addons.changingarmor")) {
+					event.setCancelled(true);
+					ColorChangingArmor.changeArmor(player);
 				} else {
-					e.setCancelled(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.ColorChangingArmor")));
+					event.setCancelled(true);
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.ColorChangingArmor")));
 				}
 			}
 			// HIDING PLAYERS
 			if(clicked.getType() == Material.DEAD_BUSH) {
-				if(p.hasPermission("ecr.addons.hideplayers")) {
+				if(player.hasPermission("ecr.addons.hideplayers")) {
 					e.setCancelled(true);
-					HidePlayers.hidePlayers(p);
+					HidePlayers.hidePlayers(player);
 				} else {
-					e.setCancelled(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.HidePlayers")));
+					event.setCancelled(true);
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.HidePlayers")));
 				}
 			}
 			// Flight
 			if(clicked.getType() == Material.GLOWSTONE_DUST) {
-				if(p.hasPermission("ecr.addons.flight")) {
-					e.setCancelled(true);
-					Fly.enableFly(p);
+				if(player.hasPermission("ecr.addons.flight")) {
+					event.setCancelled(true);
+					Fly.enableFly(player);
 				} else {
-					e.setCancelled(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Flight")));
+					event.setCancelled(true);
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Flight")));
 				}
 			}
 			// FIREWORK
 			if(clicked.getType() == Material.FIREWORK) {
 				if(p.hasPermission("ecr.addons.firework")) {
-					e.setCancelled(true);
-					FireworkLauncher.launchFw(p);
+					event.setCancelled(true);
+					FireworkLauncher.launchFw(player);
 				} else {
-					e.setCancelled(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.FireworkLauncher")));
+					event.setCancelled(true);
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.FireworkLauncher")));
 				}
 			}
 			// PAINTBALL
 						if(clicked.getType() == Material.ARROW) {
-							if(p.hasPermission("ecr.addons.paintball")) {
-								e.setCancelled(true);
-								Paintball.launchPb(p);
+							if(player.hasPermission("ecr.addons.paintball")) {
+								event.setCancelled(true);
+								Paintball.launchPb(player);
 							} else {
-								e.setCancelled(true);
-								p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Paintball")));
+								event.setCancelled(true);
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Paintball")));
 							}
 						}
 			// CHANGE COLOR
 						if(clicked.getType() == Material.WOOL) {
-							if(p.hasPermission("ecr.addons.colorpicker")) {
-								e.setCancelled(true);
-								p.closeInventory();
-								p.openInventory(tcolGUI);
+							if(player.hasPermission("ecr.addons.colorpicker")) {
+								event.setCancelled(true);
+								player.closeInventory();
+								player.openInventory(tcolGUI);
 							} else {
-								e.setCancelled(true);
-								p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.ColorPicker")));
+								event.setCancelled(true);
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.ColorPicker")));
 							}
 						}
 			
-		} else if(inv.getName().equals(tcolGUI.getName())) {	
-		  if(p.hasPermission("ecr.addons.colorpicker.tab")) {
-			e.setCancelled(true);
-			p.closeInventory();
-			switch(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName())) {
+		} else if(inventory.getName().equals(tcolGUI.getName())) {	
+		  if(player.hasPermission("ecr.addons.colorpicker.tab")) {
+			event.setCancelled(true);
+			player.closeInventory();
+			switch(ChatColor.stripColor(evebt.getCurrentItem().getItemMeta().getDisplayName())) {
 			case "Black":
-				PlayerColor.changePlayerTab(p, "black");
+				PlayerColor.changePlayerTab(player, "black");
 				break;
 			case "Gray":
-				PlayerColor.changePlayerTab(p, "gray");
+				PlayerColor.changePlayerTab(player, "gray");
 				break;
 			case "Blue":
-				PlayerColor.changePlayerTab(p, "blue");
+				PlayerColor.changePlayerTab(pplayer "blue");
 				break;
 			case "Magenta":
-				PlayerColor.changePlayerTab(p, "magenta");
+				PlayerColor.changePlayerTab(pplayer "magenta");
 				break;
 			case "Aqua":
-				PlayerColor.changePlayerTab(p, "aqua");
+				PlayerColor.changePlayerTab(player, "aqua");
 				break;
 			case "Pink":
-				PlayerColor.changePlayerTab(p, "pink");
+				PlayerColor.changePlayerTab(player, "pink");
 				break;
 			case "Green":
-				PlayerColor.changePlayerTab(p, "green");
+				PlayerColor.changePlayerTab(player, "green");
 				break;
 			case "Gold":
-				PlayerColor.changePlayerTab(p, "gold");
+				PlayerColor.changePlayerTab(player, "gold");
 				break;
 			case "Lime":
-				PlayerColor.changePlayerTab(p, "lime");
+				PlayerColor.changePlayerTab(player, "lime");
 				break;
 			case "Yellow":
-				PlayerColor.changePlayerTab(p, "yellow");
+				PlayerColor.changePlayerTab(player, "yellow");
 				break;
 			case "White":
-				PlayerColor.changePlayerTab(p, "white");
+				PlayerColor.changePlayerTab(player, "white");
 				break;
 			}
 			} else {
-				e.setCancelled(true);
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Tab")));
+				event.setCancelled(true);
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.Tab")));
 			}
 		  }
 		}
@@ -248,15 +257,15 @@ public class GUI implements Listener {
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onPlayerUse(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
+	public void onPlayerUse(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
 		
-		if(p.getItemInHand().getType() == Material.getMaterial(config.getInt("GUI.AttributeGUI.Item")) && p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("GUI.AttributeGUI.Name")))) {
-			if(p.hasPermission("ecr.addonspicker")) {
-				p.openInventory(cmdGUI);
-				e.setCancelled(true);
+		if(player.getItemInHand().getType() == Material.getMaterial(config.getInt("GUI.AttributeGUI.Item")) && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("GUI.AttributeGUI.Name")))) {
+			if(player.hasPermission("ecr.addonspicker")) {
+				player.openInventory(cmdGUI);
+				event.setCancelled(true);
 			} else {
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.AddonsPicker")));
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("NoPermissions.AddonsPicker")));
 			}
 			
 		}
